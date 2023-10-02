@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Video</title>
+</head>
+<body>
+    <video id="videoPlayer" playsinline autoplay>
+        <source src="02.102023.mp4" type="video/mp4">
+        Tu navegador no admite la reproducción de videos.
+    </video>
+
+    <script>
+        // Obtener la referencia al elemento de video
+        const video = document.getElementById('videoPlayer');
+
+        // Función para activar el modo pantalla completa
+        function toggleFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        }
+
+        // Función para adelantar el video 10 segundos
+        function skipTenSeconds() {
+            video.currentTime += 10;
+        }
+
+        // Función para ajustar el volumen
+        function setVolume(volume) {
+            video.volume = volume;
+        }
+
+        // Agregar event listeners para los botones
+        document.getElementById('fullscreenButton').addEventListener('click', toggleFullScreen);
+        document.getElementById('skipButton').addEventListener('click', skipTenSeconds);
+        document.getElementById('volumeSlider').addEventListener('input', function () {
+            setVolume(this.value);
+        });
+    </script>
+</body>
+</html>
